@@ -20,14 +20,14 @@ public class MainManager : MonoBehaviour
     private bool m_GameOver = false;
 
     [SerializeField] private string playerCurrentlyPlaying;
-    [SerializeField] private string playerHighscore;
+    [SerializeField] private string highscore;
 
     
     // Start is called before the first frame update
     void Start()
     {
         string playerHighscore= string.IsNullOrEmpty(GameManager.Instance.PlayerHighScore)? "-" : GameManager.Instance.PlayerHighScore;
-        string highscore= string.IsNullOrEmpty(GameManager.Instance.HighScore) ? "-" : GameManager.Instance.HighScore;
+        highscore = string.IsNullOrEmpty(GameManager.Instance.HighScore) ? "-" : GameManager.Instance.HighScore;
         playerCurrentlyPlaying = GameManager.Instance.PlayerName;
         HighScoreText.text = $"Best Score : {playerHighscore} : {highscore}";
 
@@ -81,14 +81,14 @@ public class MainManager : MonoBehaviour
     {
         m_GameOver = true;
         GameOverText.SetActive(true);
-        if (string.IsNullOrEmpty(playerHighscore))
+        if (string.IsNullOrEmpty(highscore))
         {
             GameManager.Instance.PlayerHighScore = playerCurrentlyPlaying;
             GameManager.Instance.HighScore = $"{m_Points}";
         }
         else
         {
-            if (m_Points > int.Parse(playerHighscore))
+            if (m_Points > int.Parse(highscore))
             {
                 GameManager.Instance.HighScore = $"{m_Points}";
                 GameManager.Instance.PlayerHighScore = playerCurrentlyPlaying;
